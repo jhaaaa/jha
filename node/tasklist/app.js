@@ -30,12 +30,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-/**
- *replaced with app.get and app.post from tutorial
 app.get('/', routes.index);
 app.get('/users', user.list);
-*/
-
 app.get('/', taskList.showTasks.bind(taskList));
 app.post('/addtask', taskList.addTask.bind(taskList));
 app.post('/completetask', taskList.completeTask.bind(taskList));
