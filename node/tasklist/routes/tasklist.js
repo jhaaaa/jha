@@ -24,7 +24,7 @@ TaskList.prototype = {
         throw err;
       }
     });
-    res.redirect('/');
+    res.redirect('//');
   },
 
   completeTask: function(req,res) {
@@ -40,6 +40,6 @@ TaskList.prototype = {
         });
       }
     }
-    res.redirect('/');
+    res.redirect('//');
   }
 }
