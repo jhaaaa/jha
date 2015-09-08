@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+<body>
+<div class="post">
+<h1>Generate a SAML Assertion</h1>
+<p>Generate a SAML assertion based on OneLogin user authentication values.</p>
+<p>For an example of what you can do with this API, see <a href="https://developers.onelogin.com/v1.0/docs/use-the-onelogin-saml-assertion-api-with-aws-sts">Use the OneLogin SAML Assertion API with AWS STS</a>.</p>
+<h2>Resource URL</h2>
+<p><code>https://api.onelogin.com/api/v3/saml/assertion</code></p>
+<h2>Parameters</h2>
+<table>
+<tr valign="top">
+<td><p><strong>Content-Type</strong></p>
+<p><em style="color: #FF0004">Required</em></p>
+<p>String</p>
+</td><td><p>Set to <code>application/json</code>.</p></td>
+</tr>
+<tr valign="top">
+  <td><p><strong>api-key</strong></p>
+    <p><em style="color: #FF0004">Required</em></p>
+    <p>Integer</p></td>
+  <td><p>API key assigned to the OneLogin account that contains the user and app for which you want to generate a SAML token.</p></td>
+</tr>
+<tr valign="top">
+  <td><p><strong>username</strong></p>
+    <p><em style="color: #FF0004">Required</em></p>
+    <p>String</p></td>
+  <td><p>If you have a subdomain defined, you can set this to the username or email of the OneLogin user accessing the app for which you want to generate a SAML token. If you do not have a subdomain defined, you must set this to the user's email only.</p></td>
+</tr>
+</table>
+<h2>Sample Response</h2>
+<div class="tab-content">
+  <div id="200ok" class="tab-pane">
+    <h3>200 OK</h3>
+<pre>&lt;custom_attributes&gt;
+     &lt;attribute type=&quot;string&quot; label=&quot;Aliases&quot; name=&quot;aliases&quot; /&gt;   
+&lt;/custom_attributes&gt;</pre>
+  </div>
+  <div id="400bad" class="tab-pane">
+    <h3>400 Bad Request</h3>
+    <pre>&lt;custom_attributes&gt;
+     &lt;attribute type=&quot;string&quot; label=&quot;Aliases&quot; name=&quot;aliases&quot; /&gt;   
+&lt;/custom_attributes&gt;</pre>
+  </div>
+  <div id="401unauth" class="tab-pane">
+    <h3>401 Unauthorized</h3>
+    <pre>&lt;custom_attributes&gt;
+     &lt;attribute type=&quot;string&quot; label=&quot;Aliases&quot; name=&quot;aliases&quot; /&gt;   
+&lt;/custom_attributes&gt;</pre>
+  </div>
+</div>
+<h2>Sample cURL Request</h2>
+<p>Be sure to replace placeholder values surrounded by <code>&lt;</code> <code>&gt;</code> with actual values.</p>
+<pre data-mode="curl">curl -X POST -H "Content-Type: application/json" \
+-d '{
+     "api_key": "&lt;api_key&gt;",
+     "username": "&lt;email&gt;",
+     "password": "&lt;password&gt;",
+     "app_id": "&lt;app_id&gt;"
+}' \
+https://api.onelogin.com/api/v3/saml/assertion</pre>
+<h2>Postman Collection</h2>
+<p><img src="https://www.filepicker.io/api/file/eq5VBWTvQVaxTUogiSub" />&nbsp;<a href="https://onelogin-screenshots.s3.amazonaws.com/dev_site/postman/GetSAMLAssertionAPIOneLogin.json.postman_collection">Download</a> for the Generate SAML Assertion API.</p>
+<h2>Response Elements</h2>
+<table>
+<tr valign="top"><th>Element</th><th>Description</th></tr>
+<tr valign="top"><td><p><code>status</code></p></td><td><p>Status of the request.</p></td></tr>
+<tr valign="top"><td><p><code>message</code></p></td><td><p>Response status details.</p></td></tr>
+<tr valign="top"><td><p><code>error</code></p></td><td><p>Valid values are:</p><ul><li><p><code>true</code>: Indicates that an error occurred.</p></li><li><p><code>false</code>: Indicates that no errors occurred.</p></li></ul></td></tr>
+</table>
+</div>
